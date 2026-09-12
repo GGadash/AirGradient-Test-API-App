@@ -1,0 +1,21 @@
+# Local credentials and machine configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python and local tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.vscode/
+.idea/
+
+# Generated release archives and local output
+dist/
+*.log
+.DS_Store
+Thumbs.db

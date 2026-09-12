@@ -1,0 +1,39 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check Python syntax
+        run: python -m py_compile serve.py scripts/build_release.py
+      - name: Check inline JavaScript syntax
+        run: |
+          python - <<'PY'
+          import re
+          import subprocess
+          from pathlib import Path
+          html = Path('AirGradient-Test-API-App.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script\b[^>]*>([\s\S]*?)</script>', html, re.IGNORECASE)
+          assert any(script.strip() for script in scripts), 'No inline JavaScript found'
+          for script in scripts:
+              if script.strip():
+                  subprocess.run(['node', '--check'], input=script, text=True, check=True)
+          PY
+      - name: Build and verify release archive
+        run: python scripts/build_release.py
