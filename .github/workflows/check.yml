@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22'
       - name: Check Python syntax
-        run: python -m py_compile serve.py scripts/build_release.py
+        run: python -m py_compile serve.py scripts/build_release.py scripts/build_pages.py
       - name: Check inline JavaScript syntax
         run: |
           python - <<'PY'
@@ -38,5 +38,10 @@ jobs:
               if script.strip():
                   subprocess.run(['node', '--check'], input=script, text=True, check=True)
           PY
+      - name: Test supplementary data and browser logic
+        run: |
+          python -m unittest discover -s tests -p 'test_*.py'
+          node --test tests/web.test.mjs
+          python scripts/build_pages.py --offline
       - name: Build and verify release archive
         run: python scripts/build_release.py

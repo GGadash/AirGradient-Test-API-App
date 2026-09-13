@@ -5,7 +5,7 @@ import hashlib
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-VERSION = '2.1.0-rc.1'
+VERSION = '2.2.0-rc.1'
 ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = f'AirGradient-Test-API-App-v{VERSION}'
 FILES = (
@@ -22,6 +22,15 @@ FILES = (
     '.gitattributes',
     '.github/workflows/check.yml',
     'scripts/build_release.py',
+    'scripts/build_pages.py',
+    '.github/workflows/pages.yml',
+    'web/index.html',
+    'web/style.css',
+    'web/app.mjs',
+    'web/devices.json',
+    'web/README.md',
+    'tests/test_pages.py',
+    'tests/web.test.mjs',
 )
 
 

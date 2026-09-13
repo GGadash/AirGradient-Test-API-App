@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: MIT-0; AirGradient data is CC-BY-SA-4.0. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Supplementary AirGradient Test API App web preview. Scheduled public readings; use the main Python app for fuller features and on-demand requests.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Web preview · AirGradient Test API App</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header><div class="wrap head"><div><p class="eyebrow">AirGradient Test API App</p><h1>A quick look at the air.</h1><p class="subtitle">Supplementary web preview · v__VERSION__</p></div><a class="button primary" href="https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v__VERSION__">Get the main Python app ↗</a></div></header>
+<main class="wrap">
+<section class="notice" aria-labelledby="edition-title"><span class="badge">Supplementary edition</span><h2 id="edition-title">The Python + localhost app is the main version.</h2><p>This page is provided for convenient viewing without installation. For the fuller experience and better results when testing the API, <a href="https://github.com/GGadash/AirGradient-Test-API-App/blob/main/START_HERE.md">download and use the main app</a>: it makes on-demand requests, supports more device controls, and offers authorized hourly access. Both editions depend on the same upstream sensor data; the main app does not improve sensor accuracy.</p><p><strong>Web limitations:</strong> four fixed devices, public latest readings only, and scheduled snapshots instead of live browser-to-API requests. No private tokens, hourly history, or device additions. Internet is required; Python is not required for visitors.</p></section>
+<section class="collection" aria-label="Publication status"><div><h2>Latest published readings</h2><p id="publication" role="status" aria-live="polite">Loading the published snapshot…</p><p class="small">Collection is scheduled about every 15 minutes. GitHub delays and outages can make it older. Reloading does not request fresh readings from AirGradient.</p></div><button id="reload" class="button">Reload published data</button></section>
+<p id="error" class="error" role="alert" hidden></p>
+<div id="cards" class="cards" aria-label="Four public devices"></div>
+<section class="panel"><div class="section-head"><div><h2>Where the readings come from</h2><p class="small">World overview · select a marker for its device · no street tiles</p></div><a href="https://www.airgradient.com/map/" target="_blank" rel="noopener noreferrer">AirGradient map ↗</a></div><div id="map" role="region" aria-label="Map of device locations"></div><p id="map-status" class="small">Map loading. Device readings are also available in the cards and tables.</p></section>
+<section class="panel"><div class="section-head"><h2>Parameters and original records</h2><a href="./data/latest.json" target="_blank" rel="noopener">Published JSON ↗</a></div><p class="small">Null and missing values remain unavailable. Raw PM₂.₅ is displayed; no AQI is calculated in this web preview. A stale label means the measurement is over 20 minutes old. The source may already be delayed when collected.</p><div id="details"></div></section>
+<section class="panel"><h2>What to expect</h2><ul><li>Measurement time comes from the device/API. Collection time tells you when GitHub last fetched that record. All displayed times are UTC.</li><li>Failed collection may retain an earlier reading, explicitly labelled with its original timestamps. Zero remains zero; missing data is never replaced with an invented value.</li><li>The page reloads published JSON every five minutes while open. Publishing schedules are approximate; a collection gap over 45 minutes is flagged.</li><li>GitHub can disable scheduled jobs after 60 days without repository activity. If updates stop, <a href="https://github.com/GGadash/AirGradient-Test-API-App/actions/workflows/pages.yml">check the collection workflow</a> or use the main app.</li><li>Unknown parameter units remain unspecified. Gas-related indices/signals are not calibrated NO₂ or O₃ concentrations. This is a demonstration, not an official AirGradient product.</li></ul></section>
+<noscript><p class="notice">Enable JavaScript to see readings, or open the <a href="./data/latest.json">published JSON</a>.</p></noscript>
+</main>
+<footer class="wrap"><p>Original app code and docs: <a href="https://github.com/GGadash/AirGradient-Test-API-App/blob/main/LICENSE">MIT No Attribution (MIT-0)</a>. Free to use, modify, share, and sell; attribution is optional and welcome. No share-alike requirement for original code. Provided as is, without warranty.</p><p>Public measurements: <a href="https://www.airgradient.com/">AirGradient</a> and the contributors shown with each device, under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Records are grouped with collection metadata; measurements are not corrected or resampled. Third-party attribution/share-alike terms still apply to their data. Map: Leaflet / Natural Earth. <a href="https://github.com/GGadash/AirGradient-Test-API-App/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a>.</p><p>Made by Akila DJ using OpenAI · <a href="https://github.com/GGadash/AirGradient-Test-API-App">Source and full documentation</a></p></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>

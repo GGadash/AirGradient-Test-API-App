@@ -1,6 +1,17 @@
 # Start here — AirGradient Test API App
 
-**Version: v2.1.0-rc.1 (release candidate).** For testing and demonstration.
+**Version: v2.2.0-rc.1 (release candidate).** For testing and demonstration.
+
+## Which version should I use?
+
+**Use the main Python + localhost app for fuller features and on-demand requests.**
+The steps below install and run that main version. For an easier first look, open
+the [supplementary website](https://ggadash.github.io/AirGradient-Test-API-App/).
+It needs internet but no Python installation. It shows scheduled snapshots of four
+fixed public devices; no private tokens, hourly history, or added devices. Reloading
+does not fetch new AirGradient readings. Check the measurement/collection times.
+GitHub schedules can be delayed or disabled after inactivity. For better results
+when testing the API, return to the main app. [Web limitations](web/README.md).
 
 ## Before you begin
 
@@ -22,7 +33,7 @@ launcher that cannot find a default Python still needs an installed/configured r
 
 ## Run in five steps
 
-1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.1.0-rc.1) and download **AirGradient-Test-API-App-v2.1.0-rc.1.zip** under **Assets**.
+1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1) and download **AirGradient-Test-API-App-v2.2.0-rc.1.zip** under **Assets**.
 2. Extract the entire ZIP. Open a terminal in the folder containing `serve.py`.
 3. Run **`py serve.py`** on Windows, or **`python3 serve.py`** on macOS/Linux.
 4. Open the exact local URL printed in the terminal, usually `http://127.0.0.1:8765/`.

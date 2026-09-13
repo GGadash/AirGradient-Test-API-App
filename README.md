@@ -1,9 +1,9 @@
 # AirGradient Test API App
 
-**v2.1.0-rc.1 — release candidate for testing.** A local browser app for exploring
+**v2.2.0-rc.1 — release candidate for testing.** A local browser app for exploring
 AirGradient air-quality API data. Made by Akila DJ using OpenAI.
 
-**Requires an installed Python runtime and an active internet connection to get data.**
+**Main local app: requires an installed Python runtime and an active internet connection to get data.**
 Python 3.9+ is the compatibility minimum; install a currently supported stable
 Python 3 release (such as 3.14) for a new setup. A modern web browser is also required.
 
@@ -13,9 +13,37 @@ There is no requirement to publish your changes or use the same license. Provide
 as is, without warranty. Third-party materials and services keep their own terms.
 
 [Start here](START_HERE.md) ·
-[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.1.0-rc.1) ·
+[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1) ·
 [All releases](https://github.com/GGadash/AirGradient-Test-API-App/releases) ·
 [Release notes](RELEASE_NOTES.md) · [Development and publishing](CONTRIBUTING.md)
+
+## Supplementary web preview
+
+**The Python + localhost app remains the main product.** For convenient viewing
+without installing Python, open the [supplementary GitHub Pages preview](https://ggadash.github.io/AirGradient-Test-API-App/).
+Use the main app for the fuller experience and better results when testing the API:
+on-demand upstream requests, configurable devices, correction selection, and
+permission-based hourly access. It does not improve underlying sensor accuracy.
+
+| Main local app (recommended) | Supplementary website |
+| --- | --- |
+| Install Python, run `serve.py`, open the printed local URL | Open the website; visitors need only internet and a browser |
+| Requests data on demand, subject to API cadence/cache | Displays snapshots collected on a nominal 15-minute GitHub schedule |
+| Device controls, corrected/raw selection, illustrative AQI, authorized hourly history | Four fixed devices, raw PM2.5, returned fields, world map, and published JSON |
+| Tokens stay in your local server's memory | No token entry or private/authenticated data |
+
+The page labels itself as supplementary and links back to the main download.
+**Reload published data** only reloads the latest published snapshot; it does not
+trigger AirGradient collection. GitHub scheduling/deployment delays add latency.
+Measurement time and per-device collection time are displayed separately in UTC.
+Failures may retain earlier readings with explicit errors and original timestamps;
+missing readings remain unavailable. The browser checks for published updates every
+five minutes while visible. Readings older than 20 minutes and collection gaps over
+45 minutes are flagged. These are demo thresholds, not a service guarantee.
+
+GitHub may disable scheduled collection after 60 days without repository activity.
+If updates stop, check the [Pages workflow](https://github.com/GGadash/AirGradient-Test-API-App/actions/workflows/pages.yml)
+or use the main local app. [Full supplementary guide](web/README.md).
 
 ## What it does
 
@@ -60,8 +88,8 @@ listens only on your computer's loopback address.
 ## Download and run
 
 1. Install Python using the instructions above and connect to the internet.
-2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.1.0-rc.1).
-3. Under **Assets**, download `AirGradient-Test-API-App-v2.1.0-rc.1.zip`. Extract the entire ZIP to a normal folder.
+2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1).
+3. Under **Assets**, download `AirGradient-Test-API-App-v2.2.0-rc.1.zip`. Extract the entire ZIP to a normal folder.
 4. Open a terminal in the extracted folder containing `serve.py` and `AirGradient-Test-API-App.html`.
 5. Run the command for your system:
 
@@ -81,7 +109,7 @@ listens only on your computer's loopback address.
 On Windows, you can open the extracted folder in File Explorer, click its address
 bar, type `cmd`, and press Enter to open a terminal there. If `py` is unavailable
 but Python is installed, try `python serve.py`. On macOS/Linux, use
-`cd "/path/to/AirGradient-Test-API-App-v2.1.0-rc.1"` before running the command.
+`cd "/path/to/AirGradient-Test-API-App-v2.2.0-rc.1"` before running the command.
 
 Do not double-click the HTML or run files inside the ZIP viewer. Use `serve.py`,
 which supplies the API proxy. GitHub stores the source and downloads; this app's
@@ -247,6 +275,10 @@ CONTRIBUTING.md — development and publishing steps.
 CHANGELOG.md — release history.
 scripts/build_release.py — builds and verifies a portable source ZIP.
 .github/workflows/check.yml — automated source and packaging checks.
+web/ — supplementary website source and its guide.
+scripts/build_pages.py — public-data collection and Pages build.
+.github/workflows/pages.yml — scheduled supplementary website publication.
+tests/ — checks for web data handling and freshness labels.
 Credits: Akila DJ using OpenAI; AirGradient data; Leaflet; OpenStreetMap;
 Natural Earth public-domain land data. Independent demonstrational project.
 
@@ -277,9 +309,9 @@ then verifies every archived file. The ZIP includes source, documentation, and
 The runtime still requires Python and internet on the destination computer.
 
 To verify the downloaded ZIP in PowerShell, run
-`Get-FileHash .\AirGradient-Test-API-App-v2.1.0-rc.1.zip -Algorithm SHA256` and compare
+`Get-FileHash .\AirGradient-Test-API-App-v2.2.0-rc.1.zip -Algorithm SHA256` and compare
 it with the accompanying `.sha256` file. On Linux, use
-`sha256sum -c AirGradient-Test-API-App-v2.1.0-rc.1.zip.sha256`.
+`sha256sum -c AirGradient-Test-API-App-v2.2.0-rc.1.zip.sha256`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for Git and GitHub release steps.
 
@@ -292,7 +324,10 @@ or apply the same license to your changes. Optional credit to **Akila DJ** is we
 The software is provided as is, without warranty.
 
 Read the full [LICENSE](LICENSE) and the [official MIT-0 text](https://opensource.org/license/mit-0).
-This permission does not replace the terms for AirGradient services/data, Leaflet,
+Published AirGradient public measurements use **CC BY-SA 4.0**, with provider and
+contributor attribution retained; their data share-alike terms remain separate
+from MIT-0 for this project's original code. This permission does not replace
+the terms for AirGradient services/data, Leaflet,
 OpenStreetMap, or other third-party materials. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 Existing credits identify sources; they are not an extra attribution requirement
 for this project's original code.

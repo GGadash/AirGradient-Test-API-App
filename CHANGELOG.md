@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.0-rc.1 — 2026-09-13
+
+- Kept the Python + localhost app as the main product; corrected a leftover README.txt reference and added a link to the supplementary website.
+- Added a separately maintained, clearly labelled GitHub Pages preview for the four default public devices, with raw PM2.5, returned fields, original records, and a world outline map.
+- Added nominal 15-minute GitHub Actions collection with per-device original timestamps, unavailable/stale/error labels, and validated retention on collection failure. No private tokens or external hosting account required.
+- Documented the supplementary page's limitations and recommended the main local app for fuller API testing and on-demand requests.
+- Preserved AirGradient public-data attribution under CC BY-SA 4.0, separate from MIT-0 for original code/docs.
+- Added regression checks and included all supplementary source in the release ZIP. Generated measurement snapshots remain outside Git source and the downloadable release.
+
+
 ## 2.1.0-rc.1 — 2026-09-13
 
 - Prepared the first GitHub release as a release candidate.

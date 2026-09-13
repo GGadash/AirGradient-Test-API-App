@@ -26,24 +26,45 @@ These steps are for maintainers with repository write access and the GitHub CLI 
 
 1. Update the version in the HTML metadata, Python launcher banner/user agent, `README.md`, and `scripts/build_release.py`. Update `CHANGELOG.md`, `START_HERE.md`, and `RELEASE_NOTES.md`. Change the browser preference key only when a preference reset is intended.
 2. Complete the checks above and commit the final source to `main`.
-3. Run `py scripts/build_release.py` to create `dist/AirGradient-Test-API-App-v2.1.0-rc.1.zip` and its `.sha256` file. Future versions use their updated version in these filenames.
+3. Run `py scripts/build_release.py` to create `dist/AirGradient-Test-API-App-v2.2.0-rc.1.zip` and its `.sha256` file. Future versions use their updated version in these filenames.
 4. Push the source with `git push origin main` and wait for the Checks workflow to pass.
 5. For this version, create and push the tag:
 
    ```sh
-   git tag -a v2.1.0-rc.1 -m "AirGradient Test API App v2.1.0-rc.1"
-   git push origin v2.1.0-rc.1
+   git tag -a v2.2.0-rc.1 -m "AirGradient Test API App v2.2.0-rc.1"
+   git push origin v2.2.0-rc.1
    ```
 
 6. Publish the download using a single command (replace version strings for future releases):
 
    ```sh
-   gh release create v2.1.0-rc.1 dist/AirGradient-Test-API-App-v2.1.0-rc.1.zip dist/AirGradient-Test-API-App-v2.1.0-rc.1.zip.sha256 --repo GGadash/AirGradient-Test-API-App --verify-tag --title "AirGradient Test API App v2.1.0-rc.1" --prerelease --notes-file RELEASE_NOTES.md
+   gh release create v2.2.0-rc.1 dist/AirGradient-Test-API-App-v2.2.0-rc.1.zip dist/AirGradient-Test-API-App-v2.2.0-rc.1.zip.sha256 --repo GGadash/AirGradient-Test-API-App --verify-tag --title "AirGradient Test API App v2.2.0-rc.1" --prerelease --notes-file RELEASE_NOTES.md
    ```
 
 7. Open the GitHub release and verify its version, source commit, and both uploaded assets. Users should download the named app ZIP, extract it, and run `serve.py`.
 
 Generated archives stay in ignored `dist/`; publish them as release assets. GitHub also provides automatic source ZIP/tar downloads for the tag. Releases distribute the app; they do not host the Python backend. GitHub Pages cannot run this local server.
+
+## Supplementary website
+
+The main local app stays at the repository root. Web-only source lives in `web/`;
+see [its guide](web/README.md). Run the following checks before publishing:
+
+```sh
+python -m unittest discover -s tests -p 'test_*.py'
+node --test tests/web.test.mjs
+python scripts/build_pages.py --offline
+```
+
+Use `py` on Windows when appropriate. For an actual public-data build, omit
+`--offline`. The Pages workflow runs the collector every 15 minutes and on pushes
+to `main` or manual runs. The generated site lives in ignored `dist/site/`; only
+its static files and public-data JSON are uploaded to Pages. No snapshot commits
+are added to source history. Never add a token to this public workflow.
+
+To publish a new version, also update the web-facing release notes/links and test
+the deployed Pages site. The HTML template gets its version from the release
+builder. Leave earlier GitHub release tags unchanged.
 
 ## License for contributions
 
