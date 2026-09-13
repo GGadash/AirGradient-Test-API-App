@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0-rc.2 — 2026-09-13
+
+- Placed the supplementary device map before the published readings and clarified section titles.
+- Kept the top main-release button and added the full release URL as a wrapping text link at the very bottom.
+- Added GDTT-style GitHub funding configuration: Ko-fi `gadash` and this project's dedicated support URL.
+- Added optional support details to the website, guides, release notes, and portable package.
+
+
 ## 2.2.0-rc.1 — 2026-09-13
 
 - Kept the Python + localhost app as the main product; corrected a leftover README.txt reference and added a link to the supplementary website.

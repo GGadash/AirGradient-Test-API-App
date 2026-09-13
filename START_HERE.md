@@ -1,6 +1,6 @@
 # Start here — AirGradient Test API App
 
-**Version: v2.2.0-rc.1 (release candidate).** For testing and demonstration.
+**Version: v2.2.0-rc.2 (release candidate).** For testing and demonstration.
 
 ## Which version should I use?
 
@@ -33,7 +33,7 @@ launcher that cannot find a default Python still needs an installed/configured r
 
 ## Run in five steps
 
-1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1) and download **AirGradient-Test-API-App-v2.2.0-rc.1.zip** under **Assets**.
+1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2) and download **AirGradient-Test-API-App-v2.2.0-rc.2.zip** under **Assets**.
 2. Extract the entire ZIP. Open a terminal in the folder containing `serve.py`.
 3. Run **`py serve.py`** on Windows, or **`python3 serve.py`** on macOS/Linux.
 4. Open the exact local URL printed in the terminal, usually `http://127.0.0.1:8765/`.
@@ -55,3 +55,8 @@ their own terms and any required credits.
 [Full license](LICENSE) · [Official MIT-0 license](https://opensource.org/license/mit-0) ·
 [Third-party notices](THIRD_PARTY_NOTICES.md) · [Full user guide](README.md) ·
 [Source repository](https://github.com/GGadash/AirGradient-Test-API-App)
+
+## Optional support
+
+[Support the project on Ko-fi](https://ko-fi.com/s/3f1e7ff9a0) · [Gadash profile](https://ko-fi.com/gadash).
+Support is appreciated but not required. [Details](SUPPORT.md).

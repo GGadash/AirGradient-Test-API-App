@@ -1,6 +1,6 @@
 # AirGradient Test API App
 
-**v2.2.0-rc.1 — release candidate for testing.** A local browser app for exploring
+**v2.2.0-rc.2 — release candidate for testing.** A local browser app for exploring
 AirGradient air-quality API data. Made by Akila DJ using OpenAI.
 
 **Main local app: requires an installed Python runtime and an active internet connection to get data.**
@@ -13,7 +13,7 @@ There is no requirement to publish your changes or use the same license. Provide
 as is, without warranty. Third-party materials and services keep their own terms.
 
 [Start here](START_HERE.md) ·
-[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1) ·
+[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2) ·
 [All releases](https://github.com/GGadash/AirGradient-Test-API-App/releases) ·
 [Release notes](RELEASE_NOTES.md) · [Development and publishing](CONTRIBUTING.md)
 
@@ -88,8 +88,8 @@ listens only on your computer's loopback address.
 ## Download and run
 
 1. Install Python using the instructions above and connect to the internet.
-2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.1).
-3. Under **Assets**, download `AirGradient-Test-API-App-v2.2.0-rc.1.zip`. Extract the entire ZIP to a normal folder.
+2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2).
+3. Under **Assets**, download `AirGradient-Test-API-App-v2.2.0-rc.2.zip`. Extract the entire ZIP to a normal folder.
 4. Open a terminal in the extracted folder containing `serve.py` and `AirGradient-Test-API-App.html`.
 5. Run the command for your system:
 
@@ -109,7 +109,7 @@ listens only on your computer's loopback address.
 On Windows, you can open the extracted folder in File Explorer, click its address
 bar, type `cmd`, and press Enter to open a terminal there. If `py` is unavailable
 but Python is installed, try `python serve.py`. On macOS/Linux, use
-`cd "/path/to/AirGradient-Test-API-App-v2.2.0-rc.1"` before running the command.
+`cd "/path/to/AirGradient-Test-API-App-v2.2.0-rc.2"` before running the command.
 
 Do not double-click the HTML or run files inside the ZIP viewer. Use `serve.py`,
 which supplies the API proxy. GitHub stores the source and downloads; this app's
@@ -268,6 +268,8 @@ AirGradient-Test-API-App.html — UI, styles, JavaScript and embedded world outl
 serve.py — standard-library Python launcher and fixed AirGradient API proxy.
 README.md — the full setup and operation guide.
 START_HERE.md — short setup guide at the top level.
+SUPPORT.md — optional project support and help links.
+.github/FUNDING.yml — GitHub sponsorship links.
 LICENSE — MIT-0 license text.
 THIRD_PARTY_NOTICES.md — external data, library, and map terms.
 RELEASE_NOTES.md — release candidate information.
@@ -309,11 +311,20 @@ then verifies every archived file. The ZIP includes source, documentation, and
 The runtime still requires Python and internet on the destination computer.
 
 To verify the downloaded ZIP in PowerShell, run
-`Get-FileHash .\AirGradient-Test-API-App-v2.2.0-rc.1.zip -Algorithm SHA256` and compare
+`Get-FileHash .\AirGradient-Test-API-App-v2.2.0-rc.2.zip -Algorithm SHA256` and compare
 it with the accompanying `.sha256` file. On Linux, use
-`sha256sum -c AirGradient-Test-API-App-v2.2.0-rc.1.zip.sha256`.
+`sha256sum -c AirGradient-Test-API-App-v2.2.0-rc.2.zip.sha256`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for Git and GitHub release steps.
+
+## Support development
+
+Support is optional and appreciated. The project remains free to use under MIT-0.
+
+- Project support: [https://ko-fi.com/s/3f1e7ff9a0](https://ko-fi.com/s/3f1e7ff9a0)
+- Creator profile: [https://ko-fi.com/gadash](https://ko-fi.com/gadash)
+
+You can also use this repository's **Sponsor** section. [Support details](SUPPORT.md).
 
 ## Licensing and attribution
 

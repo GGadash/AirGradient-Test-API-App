@@ -7,6 +7,10 @@ Visit [the supplementary page](https://ggadash.github.io/AirGradient-Test-API-Ap
 For fuller API testing and on-demand requests, [get the main app](https://github.com/GGadash/AirGradient-Test-API-App/releases).
 Visitors to the web preview need internet and a browser, but do not need Python.
 
+The page shows **Device map** first, followed by **Latest published readings by
+device**, then parameters and original records. The download button stays at the top; the
+full main-release URL is also displayed as a text link at the very bottom.
+
 ## Data flow and limitations
 
 GitHub Actions runs `scripts/build_pages.py`, fetches only the four public Location
@@ -51,3 +55,8 @@ or resampled. This data license remains separate from MIT-0. See the
 [provider's public-data notice](https://www.airgradient.com/documentation/kb/subprocessors),
 [license terms](https://creativecommons.org/licenses/by-sa/4.0/),
 [project license](../LICENSE), and [third-party notices](../THIRD_PARTY_NOTICES.md).
+
+## Optional support
+
+[Project Ko-fi link](https://ko-fi.com/s/3f1e7ff9a0) · [Gadash profile](https://ko-fi.com/gadash).
+Support is voluntary. [Full support information](../SUPPORT.md).
