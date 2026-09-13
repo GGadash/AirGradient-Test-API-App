@@ -1,6 +1,13 @@
 # Changelog
 
-## 2.1.0 — 2026-09-12
+## 2.1.0-rc.1 — 2026-09-13
+
+- Prepared the first GitHub release as a release candidate.
+- Added Python installation steps, official download links, and the internet requirement to the user guide and top-level `START_HERE.md`.
+- Added MIT No Attribution (MIT-0), plain-language permission summaries, and third-party notices. Author credit is optional and welcome.
+- Added setup/license information in the app and dedicated GitHub release notes.
+
+### Changes prepared on 2026-09-12
 
 - Renamed the supplied AirGradient Max Atlas v2.1 project to **AirGradient Test API App**.
 - Renamed the HTML entry file and updated the page title, metadata, launcher, API client/server header, user agent, browser preference key, and browser tool name.

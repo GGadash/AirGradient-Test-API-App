@@ -1,51 +1,96 @@
 # AirGradient Test API App
 
-Version **2.1.0**. A local browser app for exploring AirGradient API data.
+**v2.1.0-rc.1 — release candidate for testing.** A local browser app for exploring
+AirGradient air-quality API data. Made by Akila DJ using OpenAI.
 
-Made by Akila DJ using OpenAI. For demonstrational purposes.
+**Requires an installed Python runtime and an active internet connection to get data.**
+Python 3.9+ is the compatibility minimum; install a currently supported stable
+Python 3 release (such as 3.14) for a new setup. A modern web browser is also required.
 
-[Source repository](https://github.com/GGadash/AirGradient-Test-API-App) ·
-[Download releases](https://github.com/GGadash/AirGradient-Test-API-App/releases) ·
-[Release history](CHANGELOG.md) · [Development and publishing steps](CONTRIBUTING.md)
+**License: [MIT No Attribution (MIT-0)](LICENSE).** Use, change, share, and sell the
+original code and documentation freely. Attribution is not required, but is welcome.
+There is no requirement to publish your changes or use the same license. Provided
+as is, without warranty. Third-party materials and services keep their own terms.
 
-## Quick start
+[Start here](START_HERE.md) ·
+[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.1.0-rc.1) ·
+[All releases](https://github.com/GGadash/AirGradient-Test-API-App/releases) ·
+[Release notes](RELEASE_NOTES.md) · [Development and publishing](CONTRIBUTING.md)
 
-1. Download `AirGradient-Test-API-App-v2.1.0.zip` from the release page and extract it. Open a terminal in the extracted folder containing `serve.py`.
-2. Run: `py serve.py` (Windows) or `python3 serve.py` (Linux / Mac).
-3. Open the localhost / 127.0.0.1 link printed by Python. Keep the terminal open.
+## What it does
 
-Requires Python 3.9+ and internet. Do NOT open the HTML file directly.
+View four default AirGradient device locations on a map, inspect measurements and
+raw API responses, adjust refresh and display settings, and compare returned
+parameters. Public latest data needs no API key. Optional hourly history needs
+an AirGradient token with permission for the selected locations.
 
-## Detailed instructions — Windows
+This is an independent demonstration, not an official AirGradient product or a
+production hosting server. AQI values are illustrative estimates. Device
+availability and returned parameters can change.
 
-1. Install Python 3.9 or newer from https://www.python.org/downloads/ if needed.
-   Enable the Python launcher / PATH options when offered by the installer.
-2. Right-click the downloaded ZIP and select Extract All. Open its extracted
-   folder containing `serve.py`. Do not run files from inside the ZIP viewer.
-3. Click the File Explorer address bar, type cmd, and press Enter. This opens
-   Command Prompt in that folder. Check Python with: py --version
-4. Run: py serve.py
-   If py is unavailable but Python is installed, try: python serve.py
-5. Copy the exact http://127.0.0.1:PORT/ address printed by the launcher into
-   your browser. Usually it is http://127.0.0.1:8765/; an occupied port changes it.
-6. Leave the terminal open. Press Ctrl+C there when finished.
+## Install Python first
 
-## Detailed instructions — Linux & Mac
+Download Python from the official site, then reopen your terminal after installation.
+Installing Git is optional for users downloading the release ZIP.
 
-1. Extract the ZIP using your file manager. Check Python in Terminal:
-   python3 --version
-   Python 3.9+ is required. Use your Linux distribution's package manager or
-   https://www.python.org/downloads/macos/ if you need to install Python.
-2. Open Terminal and change into the extracted folder, using your actual path:
-   `cd "/path/to/AirGradient-Test-API-App-v2.1.0"`
-3. Run: python3 serve.py
-4. Open the exact localhost / 127.0.0.1 URL printed in Terminal in your browser.
-   Leave Terminal running; stop with Ctrl+C when finished.
-No pip packages, build tools, or API key are required for public latest data.
+| System | Installation and help | Check after installation |
+| --- | --- | --- |
+| Windows | [Python downloads for Windows](https://www.python.org/downloads/windows/) and [official Windows setup guide](https://docs.python.org/3/using/windows.html). Follow the Python install manager or installer instructions. If a traditional installer offers an **Add Python to PATH** option, enable it. | `py --version` or `python --version` |
+| macOS | [Python downloads for macOS](https://www.python.org/downloads/macos/) and [official macOS guide](https://docs.python.org/3/using/mac.html). Run the downloaded installer. | `python3 --version` |
+| Linux | Install Python 3 using your distribution's software manager. See the [official Unix guide](https://docs.python.org/3/using/unix.html). | `python3 --version` |
+
+[All Python downloads](https://www.python.org/downloads/). If `py` says it cannot
+find a default Python, the launcher is present but a usable runtime still needs
+to be installed/configured. Follow the Windows guide above, reopen the terminal,
+and check the version again. No pip packages, npm install, or build tools are
+needed to run this app.
+
+## Internet connection
+
+Keep an **active internet connection** while using the app. The local Python
+server fetches readings from `api.airgradient.com`; Leaflet loads from `unpkg.com`,
+and street-map tiles load from OpenStreetMap. The built-in world outline avoids
+street-tile downloads, but it does not make the app or live data work offline.
+
+If access is blocked, ask your network administrator about these services or use
+a network that permits them. The app reports retrieval errors; it does not invent
+replacement measurements. No incoming internet connection is needed: the launcher
+listens only on your computer's loopback address.
+
+## Download and run
+
+1. Install Python using the instructions above and connect to the internet.
+2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.1.0-rc.1).
+3. Under **Assets**, download `AirGradient-Test-API-App-v2.1.0-rc.1.zip`. Extract the entire ZIP to a normal folder.
+4. Open a terminal in the extracted folder containing `serve.py` and `AirGradient-Test-API-App.html`.
+5. Run the command for your system:
+
+   ```powershell
+   # Windows
+   py serve.py
+   ```
+
+   ```sh
+   # macOS or Linux
+   python3 serve.py
+   ```
+
+6. Open the exact `http://127.0.0.1:PORT/` URL printed in the terminal. The usual port is `8765`, but it can change if occupied.
+7. Keep the terminal open while using the app. Press **Ctrl+C** to stop the server.
+
+On Windows, you can open the extracted folder in File Explorer, click its address
+bar, type `cmd`, and press Enter to open a terminal there. If `py` is unavailable
+but Python is installed, try `python serve.py`. On macOS/Linux, use
+`cd "/path/to/AirGradient-Test-API-App-v2.1.0-rc.1"` before running the command.
+
+Do not double-click the HTML or run files inside the ZIP viewer. Use `serve.py`,
+which supplies the API proxy. GitHub stores the source and downloads; this app's
+Python backend does not run on GitHub Pages.
 
 ## The four default slots
 
-Device selection checked against AirGradient's public API on 12 September 2026.
+The original package records a device-selection check on 12 September 2026.
+Those historical measurements have not been reverified for this release candidate.
 Hardware identity is based on API model codes matched to AirGradient models;
 it is not an independent physical inspection. A contributor is the operator,
 not necessarily the manufacturer. Unknown / third-party models are rejected.
@@ -57,7 +102,7 @@ not necessarily the manufacturer. Unknown / third-party models are rejected.
    AirGradient hardware is identified by the model code; AirQo is the operator.
    This model includes O3 / NO2 hardware, but the public response did not expose
    their concentrations. Missing gas readings remain unavailable.
-   Non-zero PM2.5 checked at release; see the verification note below.
+   Non-zero PM2.5 recorded in the original package; see the verification note below.
 
 2. BANTHI, LAMPHUN — Banthi, Lamphun, Thailand
    AirGradient Open Air Max Outdoor Air Quality Monitor
@@ -149,7 +194,7 @@ or browse their public records. The demo supports up to 40 configured slots.
 Unknown model codes are rejected rather than assumed to be AirGradient hardware.
 To support an additional documented model, update MODELS in the HTML and the
 matching model list in serve.py after checking its official model documentation.
-Version 2.1.0 uses the renamed app's browser preference key. It starts with fresh
+This version uses the renamed app's browser preference key. It starts with fresh
 preferences, so saved settings from the previous app name are not carried over.
 Restore four default slots resets the device list. Preferences are browser-local.
 To upgrade, stop the old server, extract this package into a new folder and run
@@ -193,7 +238,12 @@ https://www.airgradient.com/documentation/kb/where-do-i-access-the-api-documenta
 
 AirGradient-Test-API-App.html — UI, styles, JavaScript and embedded world outline.
 serve.py — standard-library Python launcher and fixed AirGradient API proxy.
-README.md — these instructions.
+README.md — the full setup and operation guide.
+START_HERE.md — short setup guide at the top level.
+LICENSE — MIT-0 license text.
+THIRD_PARTY_NOTICES.md — external data, library, and map terms.
+RELEASE_NOTES.md — release candidate information.
+CONTRIBUTING.md — development and publishing steps.
 CHANGELOG.md — release history.
 scripts/build_release.py — builds and verifies a portable source ZIP.
 .github/workflows/check.yml — automated source and packaging checks.
@@ -227,15 +277,22 @@ then verifies every archived file. The ZIP includes source, documentation, and
 The runtime still requires Python and internet on the destination computer.
 
 To verify the downloaded ZIP in PowerShell, run
-`Get-FileHash .\AirGradient-Test-API-App-v2.1.0.zip -Algorithm SHA256` and compare
+`Get-FileHash .\AirGradient-Test-API-App-v2.1.0-rc.1.zip -Algorithm SHA256` and compare
 it with the accompanying `.sha256` file. On Linux, use
-`sha256sum -c AirGradient-Test-API-App-v2.1.0.zip.sha256`.
+`sha256sum -c AirGradient-Test-API-App-v2.1.0-rc.1.zip.sha256`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for Git and GitHub release steps.
 
 ## Licensing and attribution
 
-No project source-code license has been selected. Publication on GitHub does not
-by itself grant an open-source license. Existing third-party terms continue to
-apply: Leaflet, OpenStreetMap tiles/data, AirGradient services/data, and Natural
-Earth land data retain their respective terms and attribution.
+**MIT No Attribution (MIT-0)** applies to this project's original source code and
+documentation. You may use, copy, change, distribute, sublicense, or sell them,
+including commercially. You do not have to credit the author, publish your changes,
+or apply the same license to your changes. Optional credit to **Akila DJ** is welcome.
+The software is provided as is, without warranty.
+
+Read the full [LICENSE](LICENSE) and the [official MIT-0 text](https://opensource.org/license/mit-0).
+This permission does not replace the terms for AirGradient services/data, Leaflet,
+OpenStreetMap, or other third-party materials. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Existing credits identify sources; they are not an extra attribution requirement
+for this project's original code.

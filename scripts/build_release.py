@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT-0
 """Build and verify an allowlisted, portable source release using stdlib only."""
 import hashlib
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-VERSION = '2.1.0'
+VERSION = '2.1.0-rc.1'
 ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = f'AirGradient-Test-API-App-v{VERSION}'
 FILES = (
     'AirGradient-Test-API-App.html',
     'serve.py',
     'README.md',
+    'START_HERE.md',
+    'LICENSE',
+    'THIRD_PARTY_NOTICES.md',
+    'RELEASE_NOTES.md',
     'CHANGELOG.md',
     'CONTRIBUTING.md',
     '.gitignore',
@@ -33,7 +38,7 @@ def build():
     # Fixed metadata and ordering keep archives reproducible for the same source.
     with ZipFile(archive, 'w', compression=ZIP_DEFLATED) as zipped:
         for name, data in sorted(payloads.items()):
-            entry = ZipInfo(f'{PACKAGE}/{name}', date_time=(2026, 9, 12, 0, 0, 0))
+            entry = ZipInfo(f'{PACKAGE}/{name}', date_time=(2026, 9, 13, 0, 0, 0))
             entry.create_system = 3
             entry.external_attr = 0o100644 << 16
             entry.compress_type = ZIP_DEFLATED
