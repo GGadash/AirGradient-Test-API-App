@@ -1,6 +1,6 @@
 # AirGradient Test API App v2.3.0-rc.1
 
-**Release candidate â€” for testing and demonstration.** The Python + localhost app remains the main product. This update adds ESYair Pro as the first of five devices and displays API-reported NO2/O3 in ppb.
+**Release candidate — for testing and demonstration.** The Python + localhost app remains the main product. This update adds ESYair Pro as the first of five devices and displays API-reported NO2/O3 in ppb.
 
 ## Install and run
 
