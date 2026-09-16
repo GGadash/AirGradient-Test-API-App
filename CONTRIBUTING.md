@@ -7,14 +7,14 @@ git clone https://github.com/GGadash/AirGradient-Test-API-App.git
 cd AirGradient-Test-API-App
 ```
 
-The runtime requires Python 3.9+ and internet access. No pip or npm packages are needed to run the app. Node.js is used only for a JavaScript syntax check during development and CI.
+The runtime requires Python 3.9+ and internet access. No pip or npm packages are needed to run the app. Node.js is used for JavaScript syntax and regression checks during development and CI.
 
 ## Run and check a change
 
 1. Create a branch with `git switch -c your-change-name`.
 2. Edit `AirGradient-Test-API-App.html` for the UI or `serve.py` for the local launcher/API proxy.
 3. Run `py serve.py` on Windows or `python3 serve.py` on macOS/Linux. Open the printed local URL.
-4. Check the page title, four device cards, refresh, settings, map, and error messages. Authenticated hourly data requires your own authorized token.
+4. Check the page title, five device cards, refresh, settings, map, and error messages. Authenticated hourly data requires your own authorized token.
 5. Run `py -m py_compile serve.py scripts/build_release.py` (use `python3` instead of `py` on macOS/Linux).
 6. Run `py scripts/build_release.py` to build and verify the portable ZIP.
 7. Inspect `git diff --check` and `git diff` before committing. Never put API tokens in source files, screenshots, logs, or Git commits.
@@ -24,21 +24,21 @@ The runtime requires Python 3.9+ and internet access. No pip or npm packages are
 
 These steps are for maintainers with repository write access and the GitHub CLI installed and signed in.
 
-1. Update the version in the HTML metadata, Python launcher banner/user agent, `README.md`, and `scripts/build_release.py`. Update `CHANGELOG.md`, `START_HERE.md`, and `RELEASE_NOTES.md`. Change the browser preference key only when a preference reset is intended.
+1. Update the version in the HTML metadata, Python launcher banner/user agent, `README.md`, and `scripts/build_release.py`. Update `CHANGELOG.md`, `START_HERE.md`, and `RELEASE_NOTES.md`. When changing the browser preference key, migrate existing preferences and test upgrades.
 2. Complete the checks above and commit the final source to `main`.
-3. Run `py scripts/build_release.py` to create `dist/AirGradient-Test-API-App-v2.2.0-rc.2.zip` and its `.sha256` file. Future versions use their updated version in these filenames.
+3. Run `py scripts/build_release.py` to create `dist/AirGradient-Test-API-App-v2.3.0-rc.1.zip` and its `.sha256` file. Future versions use their updated version in these filenames.
 4. Push the source with `git push origin main` and wait for the Checks workflow to pass.
 5. For this version, create and push the tag:
 
    ```sh
-   git tag -a v2.2.0-rc.2 -m "AirGradient Test API App v2.2.0-rc.2"
-   git push origin v2.2.0-rc.2
+   git tag -a v2.3.0-rc.1 -m "AirGradient Test API App v2.3.0-rc.1"
+   git push origin v2.3.0-rc.1
    ```
 
 6. Publish the download using a single command (replace version strings for future releases):
 
    ```sh
-   gh release create v2.2.0-rc.2 dist/AirGradient-Test-API-App-v2.2.0-rc.2.zip dist/AirGradient-Test-API-App-v2.2.0-rc.2.zip.sha256 --repo GGadash/AirGradient-Test-API-App --verify-tag --title "AirGradient Test API App v2.2.0-rc.2" --prerelease --notes-file RELEASE_NOTES.md
+   gh release create v2.3.0-rc.1 dist/AirGradient-Test-API-App-v2.3.0-rc.1.zip dist/AirGradient-Test-API-App-v2.3.0-rc.1.zip.sha256 --repo GGadash/AirGradient-Test-API-App --verify-tag --title "AirGradient Test API App v2.3.0-rc.1" --prerelease --notes-file RELEASE_NOTES.md
    ```
 
 7. Open the GitHub release and verify its version, source commit, and both uploaded assets. Users should download the named app ZIP, extract it, and run `serve.py`.
@@ -52,7 +52,7 @@ see [its guide](web/README.md). Run the following checks before publishing:
 
 ```sh
 python -m unittest discover -s tests -p 'test_*.py'
-node --test tests/web.test.mjs
+node --test tests/web.test.mjs tests/main.test.mjs
 python scripts/build_pages.py --offline
 ```
 
@@ -73,3 +73,12 @@ modification are permitted without required attribution; optional credit is welc
 There is no share-alike requirement. See [LICENSE](LICENSE) and
 [third-party notices](THIRD_PARTY_NOTICES.md). Contributions intended for inclusion
 should be submitted under the same MIT-0 terms.
+
+## Wiki source and publishing
+
+The `wiki/` folder contains the exact Markdown pages published in the separate
+GitHub wiki repository. Include changes here in the app commit/release first.
+Clone `https://github.com/GGadash/AirGradient-Test-API-App.wiki.git` into an ignored
+working directory, copy the changed `wiki/*.md` files into its root, review the diff,
+commit and push its default branch. Preserve unrelated wiki pages. Verify the
+published pages and keep both copies synchronized; wiki pushes do not deploy Pages.

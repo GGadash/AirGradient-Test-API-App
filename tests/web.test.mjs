@@ -23,8 +23,17 @@ test('missing and future timestamps are not presented as fresh', () => {
   assert.match(readingState({...fresh, record: {...fresh.record, timestamp: '2099-01-01T00:00:00Z'}}, now).label, /future/);
 });
 test('rejects malformed published snapshots', () => {
-  const snapshot = {schemaVersion: 1, generatedAt: '2026-09-13T12:00:00Z', devices: [1,2,3,4].map(id => ({...fresh, id, record: {...fresh.record, locationId: id}}))};
+  const snapshot = {schemaVersion: 1, generatedAt: '2026-09-13T12:00:00Z', devices: [1,2,3,4,5].map(id => ({...fresh, id, record: {...fresh.record, locationId: id}}))};
   assert.ok(validSnapshot(snapshot)); assert.ok(!validSnapshot({}));
   assert.ok(!validSnapshot({...snapshot, devices: [fresh]}));
+  assert.ok(!validSnapshot({...snapshot, devices: Array(5).fill(fresh)}));
+  assert.ok(!validSnapshot({...snapshot, devices: snapshot.devices.slice(0,4)}));
   assert.ok(!validSnapshot({...snapshot, generatedAt: 'bad'}));
+});
+
+test('negative gas readings stay negative, and missing readings stay unavailable', () => {
+  assert.equal(displayNumber(-6.8), (-6.8).toLocaleString(undefined, {maximumFractionDigits:1}));
+  assert.equal(numberValue(-6.8), -6.8);
+  assert.equal(displayNumber(0), '0');
+  assert.equal(displayNumber(undefined), '—');
 });

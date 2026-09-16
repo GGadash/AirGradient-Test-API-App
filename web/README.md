@@ -13,7 +13,7 @@ full main-release URL is also displayed as a text link at the very bottom.
 
 ## Data flow and limitations
 
-GitHub Actions runs `scripts/build_pages.py`, fetches only the four public Location
+GitHub Actions runs `scripts/build_pages.py`, fetches only the five public Location
 IDs in `devices.json`, and publishes JSON and static assets to GitHub Pages.
 Collection is scheduled every 15 minutes, off the top of the hour. GitHub may delay
 or skip runs, and public-repository schedules can be disabled after 60 days without
@@ -27,7 +27,7 @@ collection gaps over 45 minutes are flagged. These are demonstration thresholds.
 A failed request may retain an earlier validated record with its original times
 and an explicit error. If there is no usable earlier record, it stays unavailable.
 
-This edition has four fixed devices, raw PM2.5 and returned fields, a world outline,
+This edition has five fixed devices, raw PM2.5 and returned fields, a world outline,
 and published JSON. It has no private token entry, authenticated hourly history,
 custom device addition, corrected-PM selector, or AQI calculation. The main local
 app provides fuller controls and reduces the extra publication delay; it does not
@@ -39,7 +39,7 @@ improve the underlying sensor accuracy. The page is not an official AirGradient 
 - `python scripts/build_pages.py --offline`: build an unavailable-data page for offline CI; never deploy this mode.
 - Preview the generated site with `python -m http.server 8780 --directory dist/site` and open `http://127.0.0.1:8780/`. This static preview command is only for the supplement; use `serve.py` for the main app.
 - GitHub Pages publishing source is **GitHub Actions**. Run **Publish supplementary web preview** manually from the Actions tab if needed.
-- Change `devices.json` only with verified public AirGradient locations/models; keep it aligned with the main app's four defaults.
+- Change `devices.json` only with verified public AirGradient locations/models; keep it aligned with the main app's five defaults.
 - `dist/site/` and snapshots are generated artifacts, not committed source. The workflow publishes Pages artifacts without adding measurement commits to `main`.
 - No Cloudflare account, extra hosting service, AirGradient secret, or public CORS proxy is used. GitHub Actions performs the upstream requests.
 
@@ -60,3 +60,20 @@ or resampled. This data license remains separate from MIT-0. See the
 
 [Project Ko-fi link](https://ko-fi.com/s/3f1e7ff9a0) · [Gadash profile](https://ko-fi.com/gadash).
 Support is voluntary. [Full support information](../SUPPORT.md).
+
+## Five devices and gas readings
+
+ESYair Pro (196780) is first, followed by Sir Apollo Kagwa Road (172350),
+BANTHI, LAMPHUN (189546), Sri Jayawardenepura Kotte (189917), and
+Siththimaavaa Hingun (76611). NO2 and O3 appear in **ppb** when supplied by the API.
+Missing readings stay unavailable. Negative readings are preserved and flagged;
+zero or positive numbers alone do not establish accuracy. NOx indices and raw
+electrode signals are different parameters.
+
+**Testing and demo only.** Software, labels, calculations and source readings may
+contain mistakes. This independent project tests AirGradient API connections;
+check original records before relying on results.
+
+[Project wiki](https://github.com/GGadash/AirGradient-Test-API-App/wiki) explains
+devices, parameters, credits, licensing and optional support. Its source pages
+are also included in the release's `wiki/` folder.

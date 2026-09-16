@@ -6,6 +6,9 @@ relicense third-party software, map data, API data, trademarks, or services.
 
 | Component | Use in this app | Applicable information |
 | --- | --- | --- |
+| Python | Separately installed runtime and standard library | [PSF License Version 2 and incorporated-software notices](https://docs.python.org/3/license.html); not bundled. |
+| Node.js | Development checks only | [MIT and bundled notices](https://github.com/nodejs/node/blob/main/LICENSE); not bundled or required by app users. |
+| Playwright | Development browser verification only | [Apache-2.0](https://github.com/microsoft/playwright/blob/main/LICENSE); not bundled or required by app users. |
 | Leaflet 1.9.4 | JavaScript and CSS loaded from unpkg.com; not bundled in the release | [Leaflet BSD-2-Clause license](https://github.com/Leaflet/Leaflet/blob/v1.9.4/LICENSE). Preserve its required notices when redistributing it. |
 | OpenStreetMap | Online street map tiles and underlying map data | [Copyright and ODbL information](https://www.openstreetmap.org/copyright) and [tile usage policy](https://operations.osmfoundation.org/policies/tiles/). Keep required map attribution. |
 | Natural Earth | Embedded simplified world land outlines, identified in the supplied source | [Public-domain terms](https://www.naturalearthdata.com/about/terms-of-use/). No attribution is required by Natural Earth; the credit is retained voluntarily. |
@@ -18,3 +21,8 @@ with or endorsement by these providers.
 
 See [LICENSE](LICENSE) for the original project code and [README.md](README.md)
 for setup and interpretation limits.
+
+GitHub/Actions/Pages, unpkg and OpenAI are hosting, delivery or development services
+with their own terms. This project does not relicense them or their trademarks.
+Courtesy to AirGradient and every monitor owner/contributor sharing data publicly,
+including EnviroScopY SA (ESYair Pro) and AirQo (Sir Apollo Kagwa Road).

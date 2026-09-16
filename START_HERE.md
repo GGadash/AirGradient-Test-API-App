@@ -1,13 +1,13 @@
 # Start here — AirGradient Test API App
 
-**Version: v2.2.0-rc.2 (release candidate).** For testing and demonstration.
+**Version: v2.3.0-rc.1 (release candidate).** For testing and demonstration.
 
 ## Which version should I use?
 
 **Use the main Python + localhost app for fuller features and on-demand requests.**
 The steps below install and run that main version. For an easier first look, open
 the [supplementary website](https://ggadash.github.io/AirGradient-Test-API-App/).
-It needs internet but no Python installation. It shows scheduled snapshots of four
+It needs internet but no Python installation. It shows scheduled snapshots of five
 fixed public devices; no private tokens, hourly history, or added devices. Reloading
 does not fetch new AirGradient readings. Check the measurement/collection times.
 GitHub schedules can be delayed or disabled after inactivity. For better results
@@ -33,7 +33,7 @@ launcher that cannot find a default Python still needs an installed/configured r
 
 ## Run in five steps
 
-1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2) and download **AirGradient-Test-API-App-v2.2.0-rc.2.zip** under **Assets**.
+1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.3.0-rc.1) and download **AirGradient-Test-API-App-v2.3.0-rc.1.zip** under **Assets**.
 2. Extract the entire ZIP. Open a terminal in the folder containing `serve.py`.
 3. Run **`py serve.py`** on Windows, or **`python3 serve.py`** on macOS/Linux.
 4. Open the exact local URL printed in the terminal, usually `http://127.0.0.1:8765/`.
@@ -60,3 +60,20 @@ their own terms and any required credits.
 
 [Support the project on Ko-fi](https://ko-fi.com/s/3f1e7ff9a0) · [Gadash profile](https://ko-fi.com/gadash).
 Support is appreciated but not required. [Details](SUPPORT.md).
+
+## Five devices and gas readings
+
+ESYair Pro (196780) is first, followed by Sir Apollo Kagwa Road (172350),
+BANTHI, LAMPHUN (189546), Sri Jayawardenepura Kotte (189917), and
+Siththimaavaa Hingun (76611). NO2 and O3 appear in **ppb** when supplied by the API.
+Missing readings stay unavailable. Negative readings are preserved and flagged;
+zero or positive numbers alone do not establish accuracy. NOx indices and raw
+electrode signals are different parameters.
+
+**Testing and demo only.** Software, labels, calculations and source readings may
+contain mistakes. This independent project tests AirGradient API connections;
+check original records before relying on results.
+
+[Project wiki](https://github.com/GGadash/AirGradient-Test-API-App/wiki) explains
+devices, parameters, credits, licensing and optional support. Its source pages
+are also included in the release's `wiki/` folder.

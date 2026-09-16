@@ -30,7 +30,7 @@ def remote(path, authenticated=False, ttl=30):
     if authenticated and not token:
         raise ValueError('Hourly data needs an AirGradient token with access to this location. Add it in Settings.')
     url = BASE + path + ('?token=' + urllib.parse.quote(token, safe='') if token else '')
-    req = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'AirGradient-Test-API-App/2.2.0-rc.2'})
+    req = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'AirGradient-Test-API-App/2.3.0-rc.1'})
     with urllib.request.urlopen(req, timeout=25) as response:
         data = json.load(response)
     with LOCK:
@@ -136,7 +136,7 @@ if __name__ == '__main__':
         server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     except OSError:
         server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
-    print(f'\nAirGradient Test API App v2.2.0-rc.2\nMade by Akila DJ using OpenAI — demonstrational purposes.\nLicense: MIT No Attribution (MIT-0). Credit optional; no warranty.\nInternet connection required to fetch data. Setup: README.md / START_HERE.md.\n\nOPEN THIS LINK IN YOUR BROWSER:\nhttp://127.0.0.1:{server.server_port}/\n\nThis is your localhost address. Do NOT open the HTML file directly.\nKeep this window open. Press Ctrl+C to stop.\n', flush=True)
+    print(f'\nAirGradient Test API App v2.3.0-rc.1\nMade by Akila DJ using OpenAI — demonstrational purposes.\nLicense: MIT No Attribution (MIT-0). Credit optional; no warranty.\nInternet connection required to fetch data. Setup: README.md / START_HERE.md.\n\nOPEN THIS LINK IN YOUR BROWSER:\nhttp://127.0.0.1:{server.server_port}/\n\nThis is your localhost address. Do NOT open the HTML file directly.\nKeep this window open. Press Ctrl+C to stop.\n', flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

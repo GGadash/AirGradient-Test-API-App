@@ -41,7 +41,7 @@ jobs:
       - name: Test supplementary data and browser logic
         run: |
           python -m unittest discover -s tests -p 'test_*.py'
-          node --test tests/web.test.mjs
+          node --test tests/web.test.mjs tests/main.test.mjs
           python scripts/build_pages.py --offline
       - name: Build and verify release archive
         run: python scripts/build_release.py

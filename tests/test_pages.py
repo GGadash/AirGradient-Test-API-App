@@ -37,6 +37,21 @@ class SnapshotTests(unittest.TestCase):
         self.assertIsNotNone(row['error'])
         self.assertEqual(result['generatedAt'], NOW)
 
+    def test_gas_values_and_five_device_transition_preserve_records(self):
+        import json
+        devices = json.loads((Path(__file__).resolve().parents[1] / 'web/devices.json').read_text())
+        def gas_record(device):
+            return dict(locationId=device['id'], model=device['model'], timestamp=OLD, no2=0, o3=-6.8)
+        prior = collect_snapshot(devices[1:], fetcher=gas_record, now=OLD)
+        current = collect_snapshot(devices, prior, failure, NOW)
+        self.assertEqual([r['id'] for r in current['devices']], [196780, 172350, 189546, 189917, 76611])
+        self.assertIsNone(current['devices'][0]['record'])
+        for row in current['devices'][1:]:
+            self.assertTrue(row['retained'])
+            self.assertEqual(row['record']['no2'], 0)
+            self.assertEqual(row['record']['o3'], -6.8)
+            self.assertEqual(row['fetchedAt'], OLD)
+
     def test_first_failure_has_no_invented_measurements(self):
         row = collect_snapshot([DEVICE], fetcher=failure, now=NOW)['devices'][0]
         self.assertIsNone(row['record'])

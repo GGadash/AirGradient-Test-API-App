@@ -1,6 +1,6 @@
 # AirGradient Test API App
 
-**v2.2.0-rc.2 — release candidate for testing.** A local browser app for exploring
+**v2.3.0-rc.1 — release candidate for testing.** A local browser app for exploring
 AirGradient air-quality API data. Made by Akila DJ using OpenAI.
 
 **Main local app: requires an installed Python runtime and an active internet connection to get data.**
@@ -13,8 +13,9 @@ There is no requirement to publish your changes or use the same license. Provide
 as is, without warranty. Third-party materials and services keep their own terms.
 
 [Start here](START_HERE.md) ·
-[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2) ·
+[Download this release candidate](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.3.0-rc.1) ·
 [All releases](https://github.com/GGadash/AirGradient-Test-API-App/releases) ·
+[Project wiki](https://github.com/GGadash/AirGradient-Test-API-App/wiki) ·
 [Release notes](RELEASE_NOTES.md) · [Development and publishing](CONTRIBUTING.md)
 
 ## Supplementary web preview
@@ -29,7 +30,7 @@ permission-based hourly access. It does not improve underlying sensor accuracy.
 | --- | --- |
 | Install Python, run `serve.py`, open the printed local URL | Open the website; visitors need only internet and a browser |
 | Requests data on demand, subject to API cadence/cache | Displays snapshots collected on a nominal 15-minute GitHub schedule |
-| Device controls, corrected/raw selection, illustrative AQI, authorized hourly history | Four fixed devices, raw PM2.5, returned fields, world map, and published JSON |
+| Device controls, corrected/raw selection, illustrative AQI, authorized hourly history | Five fixed devices, raw PM2.5, returned fields, world map, and published JSON |
 | Tokens stay in your local server's memory | No token entry or private/authenticated data |
 
 The page labels itself as supplementary and links back to the main download.
@@ -47,13 +48,15 @@ or use the main local app. [Full supplementary guide](web/README.md).
 
 ## What it does
 
-View four default AirGradient device locations on a map, inspect measurements and
+View five default AirGradient device locations on a map, inspect measurements and
 raw API responses, adjust refresh and display settings, and compare returned
 parameters. Public latest data needs no API key. Optional hourly history needs
 an AirGradient token with permission for the selected locations.
 
-This is an independent demonstration, not an official AirGradient product or a
-production hosting server. AQI values are illustrative estimates. Device
+**Testing and demo only:** this independent app tests AirGradient API connections.
+Software, labels, calculations and source readings may contain mistakes. Check
+original records before relying on results. It is not an official AirGradient
+product or a production hosting server. AQI values are illustrative estimates. Device
 availability and returned parameters can change.
 
 ## Install Python first
@@ -88,8 +91,8 @@ listens only on your computer's loopback address.
 ## Download and run
 
 1. Install Python using the instructions above and connect to the internet.
-2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.2.0-rc.2).
-3. Under **Assets**, download `AirGradient-Test-API-App-v2.2.0-rc.2.zip`. Extract the entire ZIP to a normal folder.
+2. Open the [release candidate page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.3.0-rc.1).
+3. Under **Assets**, download `AirGradient-Test-API-App-v2.3.0-rc.1.zip`. Extract the entire ZIP to a normal folder.
 4. Open a terminal in the extracted folder containing `serve.py` and `AirGradient-Test-API-App.html`.
 5. Run the command for your system:
 
@@ -109,50 +112,38 @@ listens only on your computer's loopback address.
 On Windows, you can open the extracted folder in File Explorer, click its address
 bar, type `cmd`, and press Enter to open a terminal there. If `py` is unavailable
 but Python is installed, try `python serve.py`. On macOS/Linux, use
-`cd "/path/to/AirGradient-Test-API-App-v2.2.0-rc.2"` before running the command.
+`cd "/path/to/AirGradient-Test-API-App-v2.3.0-rc.1"` before running the command.
 
 Do not double-click the HTML or run files inside the ZIP viewer. Use `serve.py`,
 which supplies the API proxy. GitHub stores the source and downloads; this app's
 Python backend does not run on GitHub Pages.
 
-## The four default slots
+## The five default slots
 
-The original package records a device-selection check on 12 September 2026.
-Those historical measurements have not been reverified for this release candidate.
-Hardware identity is based on API model codes matched to AirGradient models;
-it is not an independent physical inspection. A contributor is the operator,
-not necessarily the manufacturer. Unknown / third-party models are rejected.
+| Slot | Location | Location ID | Country | API model |
+| --- | --- | --- | --- | --- |
+| 1 | ESYair Pro | 196780 | Switzerland | O-M-1PPSTON-CE |
+| 2 | Sir Apollo Kagwa Road | 172350 | Uganda | O-M-1PPSTON-CE |
+| 3 | BANTHI, LAMPHUN | 189546 | Thailand | O-M-1PPST-CE |
+| 4 | Sri Jayawardenepura Kotte | 189917 | Sri Lanka | O-1PST |
+| 5 | Siththimaavaa Hingun | 76611 | Maldives | O-1PS |
 
-1. Sir Apollo Kagwa Road — Kampala, Uganda
-   AirGradient Open Air Max Outdoor Air Quality Monitor
-   Location ID: 172350. Model: O-M-1PPSTON-CE.
-   Reference coordinates: 0.33354, 32.56861. Operator/contributor: AirQo.
-   AirGradient hardware is identified by the model code; AirQo is the operator.
-   This model includes O3 / NO2 hardware, but the public response did not expose
-   their concentrations. Missing gas readings remain unavailable.
-   Non-zero PM2.5 recorded in the original package; see the verification note below.
+ESYair Pro is the new first device; the original four keep their relative order.
+The first two are gas-equipped Max models. The third is a Max without dedicated
+NO2/O3 sensors; Settings > Max without O3/NO2 — slot 3 replaces that device.
+The final two are standard Open Air models. Identity is checked against the API
+model code, not a physical inspection. Live API names and coordinates take precedence
+and contributor names identify operators, not necessarily manufacturers.
 
-2. BANTHI, LAMPHUN — Banthi, Lamphun, Thailand
-   AirGradient Open Air Max Outdoor Air Quality Monitor
-   Location ID: 189546. Model: O-M-1PPST-CE (without dedicated O3 / NO2 sensors).
-   Reference coordinates: 18.65725, 99.1126667.
-   Selected under the Thailand fallback requested when no Indian Max was found.
-   Settings > Max without O3/NO2 — slot 2 can replace this with another Max;
-   the model is checked against the API. Country is shown only when known.
+Both gas-equipped defaults now return `no2` and `o3` through their individual
+public current endpoints. Availability and values can change. ESYair Pro's API
+contributor is EnviroScopY SA; Sir Apollo Kagwa Road's is AirQo. Courtesy to these
+contributors and every owner who makes measurements public.
 
-3. Sri Jayawardenepura Kotte — Sri Lanka
-   AirGradient Open Air Outdoor Air Quality Monitor (standard / non-Max)
-   Location ID: 189917. Model: O-1PST.
-   Reference coordinates: 6.906103824237833, 79.90479420041291.
-
-4. Siththimaavaa Hingun — Male, Maldives
-   AirGradient Open Air Outdoor Air Quality Monitor (standard / non-Max)
-   Location ID: 76611. Model: O-1PS.
-   Reference coordinates: 4.17278, 73.51027.
-
-Live API names and coordinates take precedence over these reference values.
-No saved measurement snapshots are used to simulate live data. All FOUR default devices are configured. Zero readings remain visible when
-reported later; devices are not automatically swapped to force positive values.
+All five defaults are configured in both editions. Zero remains zero; negative gas
+values remain visible and flagged; no devices or values are swapped to force
+positive readings. The local app fetches current API data; the supplementary page
+uses clearly labelled scheduled snapshots.
 
 ## Original package selection check — 12 September 2026, about 17:27 UTC
 
@@ -173,7 +164,7 @@ values and availability may change. No positive readings are hard-coded.
 - Map markers prioritize PM2.5 concentration and the PM2.5 AQI estimate.
 - Hold Ctrl and scroll over the map to zoom. Command also works on Mac. Normal
   scrolling moves the page; touch pinch and the + / - controls remain available.
-- Page order: map, four AQ cards, selected AQ data, comparison/API details,
+- Page order: map, five AQ cards, selected AQ data, comparison/API details,
   Timing & interpretation, Documentation & examples.
 - Each device card and location table list returned measurement fields.
 - Select a card or a location name for the full parameter/metadata table and
@@ -181,14 +172,33 @@ values and availability may change. No positive readings are hard-coded.
   original names, values and unknown units; new fields are not discarded.
 - Use Map parameter to display any returned numeric measurement on the map.
 - Available fields can include PM1, PM2.5, PM10, particle count, CO2, temperature,
-  humidity, TVOC, VOC / NOx index or firmware values, heat index, signal strength,
-  corrections and Max battery/solar values. Actual availability varies.
+  humidity, NO2/O3 concentrations (ppb), TVOC, VOC / NOx index or firmware values,
+  heat index, signal strength, corrections, electrode signals (mV), analog front-end
+  temperature (unit unspecified) and Max battery/solar values. Actual availability varies.
 - O3 / NO2 model capability is separate from API availability. Electrode signals
   cannot be interpreted as calibrated gas concentrations without the vendor's
   applicable calibration. NOx index is not NO2 concentration.
 - The API details table includes Location ID, model, coordinates, contributor,
   firmware, serial number, timestamps, JSON links and active settings. Public
   current requests need no key. Optional private tokens are always hidden.
+
+### Gas parameters and units
+
+| API fields | Display / meaning |
+| --- | --- |
+| `no2`, `o3` | API-reported NO2 and O3 concentrations, **ppb**; cards, detail tiles, parameter tables and main-app map selector |
+| `no2WorkingElectrode`, `no2AuxiliaryElectrode`, `o3WorkingElectrode`, `o3AuxiliaryElectrode` | Raw electrode signals, **mV**, when returned; not gas concentrations |
+| `afeTemp` | Analog front-end temperature; unit unspecified in the API schema, so no unit is invented |
+| `noxIndex`, `tvocIndex` | Sensor/firmware index fields; **not** NO2/O3 concentrations |
+
+The two concentration fields are supplied by AirGradient; this app does not derive
+them from raw signals. Negative values are not physically valid concentrations and
+are flagged without altering the API record. Positive or zero values do not prove
+accuracy or calibration. Missing and null values remain unavailable. Public world
+current responses may omit raw electrodes; authenticated current responses can
+expose them. This app's optional authenticated mode fetches hourly buckets, whose
+fields depend on upstream availability. No fixed total number of fields is assumed:
+parameter lists and counts follow each returned record, including unknown fields.
 
 ## Refresh, hourly data and AQI
 
@@ -218,13 +228,15 @@ Compare vendor data using matching timestamps, averaging and correction settings
 ## Adding devices and upgrading
 
 Settings can add recognized AirGradient Max / standard Open Air devices by ID
-or browse their public records. The demo supports up to 40 configured slots.
+or browse their public records. The demo supports up to 41 configured slots.
 Unknown model codes are rejected rather than assumed to be AirGradient hardware.
 To support an additional documented model, update MODELS in the HTML and the
 matching model list in serve.py after checking its official model documentation.
-This version uses the renamed app's browser preference key. It starts with fresh
-preferences, so saved settings from the previous app name are not carried over.
-Restore four default slots resets the device list. Preferences are browser-local.
+This version migrates saved v2.1/v2.2 settings on the same browser origin: ESYair
+Pro becomes slot 1, existing slots shift by one, and custom devices and display
+preferences are retained. It does not duplicate ESYair if already configured.
+Saved settings at a different localhost port remain separate browser storage.
+Restore five default slots resets the device list. Preferences are browser-local.
 To upgrade, stop the old server, extract this package into a new folder and run
 its serve.py. Reload the printed URL. Do not mix old and new package files.
 
@@ -245,12 +257,13 @@ its serve.py. Reload the printed URL. Do not mix old and new package files.
 
 ## Public JSON links (no key)
 
+https://api.airgradient.com/public/api/v1/world/locations/196780/measures/current
 https://api.airgradient.com/public/api/v1/world/locations/172350/measures/current
 https://api.airgradient.com/public/api/v1/world/locations/189546/measures/current
 https://api.airgradient.com/public/api/v1/world/locations/189917/measures/current
 https://api.airgradient.com/public/api/v1/world/locations/76611/measures/current
 Example: open one of these links in your browser to inspect its current JSON.
-All four locations have public JSON links; availability can change.
+All five locations have public JSON links; availability can change.
 
 ## Documentation and comparison
 
@@ -280,7 +293,8 @@ scripts/build_release.py — builds and verifies a portable source ZIP.
 web/ — supplementary website source and its guide.
 scripts/build_pages.py — public-data collection and Pages build.
 .github/workflows/pages.yml — scheduled supplementary website publication.
-tests/ — checks for web data handling and freshness labels.
+tests/ — checks for data handling, gas values, preferences and freshness labels.
+wiki/ — local copies of the published GitHub wiki pages.
 Credits: Akila DJ using OpenAI; AirGradient data; Leaflet; OpenStreetMap;
 Natural Earth public-domain land data. Independent demonstrational project.
 
@@ -311,9 +325,9 @@ then verifies every archived file. The ZIP includes source, documentation, and
 The runtime still requires Python and internet on the destination computer.
 
 To verify the downloaded ZIP in PowerShell, run
-`Get-FileHash .\AirGradient-Test-API-App-v2.2.0-rc.2.zip -Algorithm SHA256` and compare
+`Get-FileHash .\AirGradient-Test-API-App-v2.3.0-rc.1.zip -Algorithm SHA256` and compare
 it with the accompanying `.sha256` file. On Linux, use
-`sha256sum -c AirGradient-Test-API-App-v2.2.0-rc.2.zip.sha256`.
+`sha256sum -c AirGradient-Test-API-App-v2.3.0-rc.1.zip.sha256`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for Git and GitHub release steps.
 

@@ -19,15 +19,16 @@ export function displayNumber(value) {
 }
 export function validSnapshot(value) {
   return value?.schemaVersion === 1 && Number.isFinite(Date.parse(value.generatedAt)) &&
-    Array.isArray(value.devices) && value.devices.length === 4 &&
+    Array.isArray(value.devices) && value.devices.length === 5 &&
+    new Set(value.devices.map(row => row?.id)).size === value.devices.length &&
     value.devices.every(row => Number.isSafeInteger(row?.id) && row.id > 0 &&
       (row.record === null || (typeof row.record === 'object' && !Array.isArray(row.record) && row.record.locationId === row.id)));
 }
 
 if (typeof document !== 'undefined') {
   const $ = id => document.getElementById(id);
-  const units = {pm01:'µg/m³',pm02:'µg/m³',pm10:'µg/m³',rco2:'ppm',atmp:'°C',rhum:'%',wifi:'dBm',heatindex:'°C',tvocIndex:'index',noxIndex:'index'};
-  const labels = {pm01:'PM₁',pm02:'PM₂.₅ (raw)',pm10:'PM₁₀',rco2:'CO₂',atmp:'Temperature',rhum:'Relative humidity',wifi:'Wi-Fi signal',heatindex:'Heat index',tvocIndex:'VOC index / firmware value',noxIndex:'NOx index / firmware value'};
+  const units = {no2:'ppb',o3:'ppb',no2WorkingElectrode:'mV',no2AuxiliaryElectrode:'mV',o3WorkingElectrode:'mV',o3AuxiliaryElectrode:'mV',pm01:'µg/m³',pm02:'µg/m³',pm10:'µg/m³',rco2:'ppm',atmp:'°C',rhum:'%',wifi:'dBm',heatindex:'°C',pm01_corrected:'µg/m³',pm02_corrected:'µg/m³',pm10_corrected:'µg/m³',rco2_corrected:'ppm',atmp_corrected:'°C',rhum_corrected:'%',tvoc:'ppb',pm003Count:'per 0.1 L',batteryVoltage:'V',panelVoltage:'V',pres:'hPa',tvocIndex:'index',noxIndex:'index'};
+  const labels = {no2:'NO₂ (API reported)',o3:'O₃ (API reported)',no2WorkingElectrode:'NO₂ working electrode',no2AuxiliaryElectrode:'NO₂ auxiliary electrode',o3WorkingElectrode:'O₃ working electrode',o3AuxiliaryElectrode:'O₃ auxiliary electrode',afeTemp:'Analog front-end temperature (unit unspecified)',pm01:'PM₁',pm02:'PM₂.₅ (raw)',pm10:'PM₁₀',rco2:'CO₂',atmp:'Temperature',rhum:'Relative humidity',wifi:'Wi-Fi signal',heatindex:'Heat index',tvocIndex:'VOC index / firmware value',noxIndex:'NOx index / firmware value'};
   let snapshot = null, busy = false, map = null, markers = null;
   const utc = value => {const n=Date.parse(value);return Number.isFinite(n)?new Date(n).toISOString().replace('T',' ').replace(/\.\d{3}Z$/, ' UTC'):'Unavailable';};
   function element(tag, text, className) {const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(className)el.className=className;return el;}
@@ -35,7 +36,7 @@ if (typeof document !== 'undefined') {
   function render() {
     const now=Date.now(), gap=now-Date.parse(snapshot.generatedAt);
     const successful=snapshot.devices.filter(row=>!row.error).length;
-    $('publication').textContent=`Last collection attempt: ${utc(snapshot.generatedAt)} · ${successful}/4 succeeded` +
+    $('publication').textContent=`Last collection attempt: ${utc(snapshot.generatedAt)} · ${successful}/${snapshot.devices.length} succeeded` +
       (gap>45*60000?' · Collection is overdue; readings may be old.':'') + (gap < -300000?' · Collection timestamp is in the future.':'');
     const open=new Set([...$('details').querySelectorAll('details[open]')].map(d=>d.id));
     $('cards').replaceChildren();$('details').replaceChildren();
@@ -45,6 +46,10 @@ if (typeof document !== 'undefined') {
       card.append(element('div',row.country,'country'),element('h3',name),element('div',`#${row.id} · ${r?.model||row.model}`,'small'));
       const pm=element('div',displayNumber(r?.pm02),'pm');pm.append(element('span',' µg/m³','unit'));
       card.append(pm,element('p','Raw PM₂.₅ · published snapshot','small'),element('span',state.label,'status '+state.tone));
+      const gases=element('div',undefined,'gas-values');
+      for(const [key,label] of [['no2','NO₂'],['o3','O₃']]) gases.append(element('p',label+': '+(numberValue(r?.[key])===null?'Unavailable':displayNumber(r[key])+' ppb')));
+      card.append(gases);
+      if(['no2','o3'].some(key=>numberValue(r?.[key])!==null&&r[key]<0))card.append(element('p','Negative gas value reported by API; not a valid physical concentration. Check source/calibration.','small gas-warning'));
       card.append(element('p','Measured: '+utc(r?.timestamp),'small'),element('p','Collected: '+utc(row.fetchedAt),'small'));
       card.append(element('p','Contributor: '+(r?.publicContributorName||'Not supplied'),'small'));
       if(row.error)card.append(element('p',row.error,'small'));
