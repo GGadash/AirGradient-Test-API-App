@@ -8,8 +8,7 @@
 - Update responsive layouts, parameter guides, demo disclaimers and licensing/credits.
 - Publish the GitHub wiki and include its source pages in the repository and release ZIP.
 
-
-## 2.2.0-rc.2 â€” 2026-09-13
+## 2.2.0-rc.2 — 2026-09-13
 
 - Placed the supplementary device map before the published readings and clarified section titles.
 - Kept the top main-release button and added the full release URL as a wrapping text link at the very bottom.
@@ -17,7 +16,7 @@
 - Added optional support details to the website, guides, release notes, and portable package.
 
 
-## 2.2.0-rc.1 â€” 2026-09-13
+## 2.2.0-rc.1 — 2026-09-13
 
 - Kept the Python + localhost app as the main product; corrected a leftover README.txt reference and added a link to the supplementary website.
 - Added a separately maintained, clearly labelled GitHub Pages preview for the four default public devices, with raw PM2.5, returned fields, original records, and a world outline map.
@@ -27,7 +26,7 @@
 - Added regression checks and included all supplementary source in the release ZIP. Generated measurement snapshots remain outside Git source and the downloadable release.
 
 
-## 2.1.0-rc.1 â€” 2026-09-13
+## 2.1.0-rc.1 — 2026-09-13
 
 - Prepared the first GitHub release as a release candidate.
 - Added Python installation steps, official download links, and the internet requirement to the user guide and top-level `START_HERE.md`.
