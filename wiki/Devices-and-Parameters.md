@@ -1,4 +1,4 @@
-# Devices and parameters
+# Air Quality Data: locations and parameters
 
 Defaults in both editions, starting with v2.3.0-rc.1:
 
@@ -57,3 +57,24 @@ status or collection failures can affect interpretation. The app does not certif
 calibration or accuracy. **Testing and demo only; mistakes may be present.**
 
 [Credits and licensing](https://github.com/GGadash/AirGradient-Test-API-App/wiki/Credits-and-Licensing) · [Home](https://github.com/GGadash/AirGradient-Test-API-App/wiki)
+
+## Compact parameter lists (v2.3.0-rc.2)
+
+Click a map location to see a scrollable popup with PM2.5/AQI as the headline and
+small parameter/value rows. Device cards show the same list: PM2.5, PM10, PM1,
+particle count, CO2, NO2, O3, temperature, relative humidity and pressure, followed
+by every additional measurement returned by the API. NO2 and O3 use the same
+compact styling as the other fields. Original JSON and metadata remain available
+in the details. The supplementary edition keeps its raw-PM2.5 headline and does
+not calculate AQI. The main app labels raw/corrected PM2.5 separately; compact
+rows retain the original API fields and units.
+
+- **N/A**: known unsupported by this model (currently dedicated NO2/O3 on non-gas models).
+- **N/D**: no usable reading in an expected or explicitly returned API field. This may mean a missing sample, null/invalid data or an endpoint limitation; a field's presence alone does not prove hardware support.
+- **—**: not reported, and model support has not been established (for example, omitted pressure). Absence is not treated as proof of unsupported hardware.
+
+A legend accompanies each list; hover a row for its explanation. Zero and negative
+values remain unchanged; negative gas concentrations have a warning. Units are
+shown when known, and unknown units are explicitly left unspecified. Stale and
+retained readings keep their timestamp/status labels. Numerical compact values
+use up to six decimal places; the raw JSON retains the original response.

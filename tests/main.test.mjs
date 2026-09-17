@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
+import {parameterRows} from '../web/app.mjs';
 const html=readFileSync(new URL('../AirGradient-Test-API-App.html',import.meta.url),'utf8');
 const script=html.slice(html.indexOf('const DEFAULTS='),html.indexOf('const prefs=loadPrefs();'));
 const context=vm.createContext({structuredClone,localStorage:{getItem:()=>null}});
@@ -35,4 +36,12 @@ test('concentration units remain distinct from raw electrodes and indices',()=>{
   assert.equal(run('FIELDS.no2WorkingElectrode[1]'),'mV');
   assert.equal(run('FIELDS.o3AuxiliaryElectrode[1]'),'mV');
   assert.equal(run('FIELDS.noxIndex[1]'),'');assert.equal(run('FIELDS.afeTemp[1]'),'');
+});
+
+test('main and supplementary lists have identical fields, units and absence rules',()=>{
+ for(const model of ['O-M-1PPSTON-CE','O-M-1PPST-CE','O-1PST','O-1PS','unknown']){
+  for(const record of [null,{}, {pm02:0,pm10:null,pm003Count:450,rco2:510,no2:null,o3:-6.8,atmp:20,rhum:60,pres:1013,newField:'<img src=x onerror=alert(1)>',timestamp:'2026-09-17'}]){
+   assert.deepEqual(run(`parameterRows(${JSON.stringify(record)},${JSON.stringify(model)})`),parameterRows(record,model));
+  }
+ }
 });

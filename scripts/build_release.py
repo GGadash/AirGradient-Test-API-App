@@ -5,7 +5,7 @@ import hashlib
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-VERSION = '2.3.0-rc.1'
+VERSION = '2.3.0-rc.2'
 ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = f'AirGradient-Test-API-App-v{VERSION}'
 FILES = (

@@ -1,4 +1,4 @@
-# Supplementary GitHub Pages edition
+# Air Quality Data — Supplementary GitHub Pages edition
 
 **The main product remains `serve.py` + `AirGradient-Test-API-App.html`.** This
 website is a convenient, limited public preview and is not a replacement for it.
@@ -7,7 +7,7 @@ Visit [the supplementary page](https://ggadash.github.io/AirGradient-Test-API-Ap
 For fuller API testing and on-demand requests, [get the main app](https://github.com/GGadash/AirGradient-Test-API-App/releases).
 Visitors to the web preview need internet and a browser, but do not need Python.
 
-The page shows **Device map** first, followed by **Latest published readings by
+The page shows **Air Quality Data map** first, followed by **Latest published Air Quality Data by
 device**, then parameters and original records. The download button stays at the top; the
 full main-release URL is also displayed as a text link at the very bottom.
 
@@ -77,3 +77,24 @@ check original records before relying on results.
 [Project wiki](https://github.com/GGadash/AirGradient-Test-API-App/wiki) explains
 devices, parameters, credits, licensing and optional support. Its source pages
 are also included in the release's `wiki/` folder.
+
+## Compact parameter lists (v2.3.0-rc.2)
+
+Click a map location to see a scrollable popup with PM2.5/AQI as the headline and
+small parameter/value rows. Device cards show the same list: PM2.5, PM10, PM1,
+particle count, CO2, NO2, O3, temperature, relative humidity and pressure, followed
+by every additional measurement returned by the API. NO2 and O3 use the same
+compact styling as the other fields. Original JSON and metadata remain available
+in the details. The supplementary edition keeps its raw-PM2.5 headline and does
+not calculate AQI. The main app labels raw/corrected PM2.5 separately; compact
+rows retain the original API fields and units.
+
+- **N/A**: known unsupported by this model (currently dedicated NO2/O3 on non-gas models).
+- **N/D**: no usable reading in an expected or explicitly returned API field. This may mean a missing sample, null/invalid data or an endpoint limitation; a field's presence alone does not prove hardware support.
+- **—**: not reported, and model support has not been established (for example, omitted pressure). Absence is not treated as proof of unsupported hardware.
+
+A legend accompanies each list; hover a row for its explanation. Zero and negative
+values remain unchanged; negative gas concentrations have a warning. Units are
+shown when known, and unknown units are explicitly left unspecified. Stale and
+retained readings keep their timestamp/status labels. Numerical compact values
+use up to six decimal places; the raw JSON retains the original response.

@@ -3,4 +3,8 @@
 
 .main-release{font-size:14px;margin-top:20px}.release-link{overflow-wrap:anywhere}.head>div{min-width:0}footer a{overflow-wrap:anywhere}
 
-.gas-values{font-size:15px;font-weight:650;font-variant-numeric:tabular-nums}.gas-warning{color:#8b4314}
+.gas-warning{color:#8b4314}
+
+.parameter-values{margin-top:12px;font-size:11px;line-height:1.45;font-weight:400}.parameter-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:8px;padding:4px 0;border-bottom:1px solid #e5ecef;align-items:start}.parameter-row>span{overflow-wrap:anywhere}.parameter-row>span:last-child{text-align:right;font-variant-numeric:tabular-nums}.parameter-row.warning{color:#87511c}.parameter-legend{font-size:10px;line-height:1.5;color:var(--muted);margin-top:8px;font-weight:400}.leaflet-popup-content .parameter-values{font-size:12px}.leaflet-popup-content{max-width:calc(100vw - 80px)}
+
+.parameter-hint{font-size:11px;color:var(--muted)}.leaflet-popup-content .parameter-hint{margin:8px 0 4px}.leaflet-popup-content .parameter-values{margin-top:0}.leaflet-popup-content .popup-headline{font-weight:650;margin:6px 0}

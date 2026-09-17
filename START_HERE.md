@@ -1,6 +1,6 @@
-# Start here — AirGradient Test API App
+# Start here — Air Quality Data with AirGradient Test API App
 
-**Version: v2.3.0-rc.1 (release candidate).** For testing and demonstration.
+**Version: v2.3.0-rc.2 (release candidate).** For testing and demonstration.
 
 ## Which version should I use?
 
@@ -33,7 +33,7 @@ launcher that cannot find a default Python still needs an installed/configured r
 
 ## Run in five steps
 
-1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.3.0-rc.1) and download **AirGradient-Test-API-App-v2.3.0-rc.1.zip** under **Assets**.
+1. Visit the [release page](https://github.com/GGadash/AirGradient-Test-API-App/releases/tag/v2.3.0-rc.2) and download **AirGradient-Test-API-App-v2.3.0-rc.2.zip** under **Assets**.
 2. Extract the entire ZIP. Open a terminal in the folder containing `serve.py`.
 3. Run **`py serve.py`** on Windows, or **`python3 serve.py`** on macOS/Linux.
 4. Open the exact local URL printed in the terminal, usually `http://127.0.0.1:8765/`.
@@ -77,3 +77,8 @@ check original records before relying on results.
 [Project wiki](https://github.com/GGadash/AirGradient-Test-API-App/wiki) explains
 devices, parameters, credits, licensing and optional support. Its source pages
 are also included in the release's `wiki/` folder.
+
+Map popups and device cards list all returned measurements, alongside the main
+PM2.5/AQI display. N/A means known unsupported; N/D means no reading in an expected
+or returned field; — means not reported and support unknown. Each list explains
+the notation. NO2/O3 use the same compact style as the other parameters.

@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.3.0-rc.2 — 17 September 2026
+
+- Show compact parameter/value lists in clicked map popups and every device card in both editions, keeping PM2.5/AQI as the headline.
+- Include PM1/2.5/10, particle count, CO2, NO2, O3, temperature, humidity, pressure and all additional returned measurements.
+- Explain unsupported (N/A), no-data (N/D) and unreported/unknown-support (—) states; keep zeros, negative warnings and unknown units.
+- Remove separate NO2/O3 highlighting in cards and fix main-map clicks so the popup stays open after device selection.
+- Update user guides, local/published wiki and regression coverage.
+- Use “Air Quality Data” in relevant app, documentation and wiki headings.
+
 ## v2.3.0-rc.1 — 17 September 2026
 
 - Add ESYair Pro (196780) first; keep the existing four in slots 2–5 across both editions.
